@@ -23,6 +23,7 @@ public class Student extends User {
         course.enrollStudent(this);
     }
 
+    // Метод для подання завдання
     public void submitAssignment(Assignment assignment) {
         assignments.add(assignment);
         assignment.submit(this);

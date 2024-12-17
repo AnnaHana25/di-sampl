@@ -1,26 +1,34 @@
 package com.di;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
 public class OnlineLearningPlatform {
     public static void main(String[] args) {
-        // Створення Injector для Google Guice
-        Injector injector = Guice.createInjector(new OnlineLearningModule());
-
-        // Отримання екземплярів з інжектора
-        OnlineCourse javaCourse = injector.getInstance(OnlineCourse.class);
-        Administrator admin = injector.getInstance(Administrator.class);
-
-        // Налаштування курсу
-        javaCourse.setCourseName("Основи Java");
-        javaCourse.addMaterial("Вступ до Java");
-        javaCourse.addMaterial("ООП в Java", true);
-
-        // Генерація звіту
-        admin.generateReport(javaCourse);
-
-        // Логін адміністратора
-        admin.login();
+        // Створення об'єктів користувачів
+        Teacher teacher = new Teacher("Іван Петров", "ivan@school.com");
+        Student student = new Student("Марія Іванова", "maria@school.com");
+        
+        // Створення курсу
+        OnlineCourse javaCourse = new OnlineCourse("Основи Java");
+        
+        // Зміна назви курсу
+        javaCourse.setCourseName("Java для початківців");
+        
+        // Додавання матеріалів
+        javaCourse.addMaterial("Вступ до Java", true);
+        javaCourse.addMaterial("ООП в Java");
+        
+        // Реєстрація студента на курс
+        student.register();
+        student.enrollCourse(javaCourse);
+        
+        // Створення та подання завдання
+        Assignment assignment = new Assignment("Перша програма на Java");
+        student.submitAssignment(assignment);
+        
+        // Оцінювання завдання
+        teacher.evaluateAssignment(assignment, 85);
+        
+        // Логін користувачів
+        teacher.login();
+        student.login();
     }
 }

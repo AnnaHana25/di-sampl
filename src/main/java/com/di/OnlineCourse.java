@@ -1,24 +1,29 @@
 package com.di;
 
-import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OnlineCourse implements Course {
     private String courseName;
     private List<String> materials;
-
-    @Inject
-    public OnlineCourse() {
-        this.courseName = "Unnamed Course";
-        this.materials = new ArrayList<>();
-    }
+    private List<Student> enrolledStudents;
 
     public OnlineCourse(String courseName) {
         this.courseName = courseName;
         this.materials = new ArrayList<>();
+        this.enrolledStudents = new ArrayList<>();
     }
 
+    // Додати метод для зміни назви курсу
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    // Решта методів залишаються незмінними...
     @Override
     public void addMaterial(String material) {
         materials.add(material);
@@ -27,30 +32,24 @@ public class OnlineCourse implements Course {
 
     @Override
     public void addMaterial(String material, boolean isImportant) {
-        addMaterial(material); // Викликаємо базовий метод
+        addMaterial(material);
         if (isImportant) {
-            System.out.println("Матеріал \"" + material + "\" позначено як важливий.");
+            System.out.println("Позначено як важливий матеріал");
         }
     }
 
     @Override
     public void removeMaterial(String material) {
-        if (materials.remove(material)) {
-            System.out.println("Видалено матеріал: " + material + " з курсу " + courseName);
-        } else {
-            System.out.println("Матеріал \"" + material + "\" не знайдено у курсі " + courseName);
-        }
+        materials.remove(material);
+        System.out.println("Видалено матеріал: " + material + " з курсу " + courseName);
+    }
+
+    public void enrollStudent(Student student) {
+        enrolledStudents.add(student);
+        System.out.println(student.getName() + " записаний на курс " + courseName);
     }
 
     public List<String> getMaterials() {
         return materials;
-    }
-
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
     }
 }
