@@ -1,10 +1,12 @@
 com\di\OnlineLearningPlatform.class
 com\di\Administrator.class
 com\di\OnlineLearningModule.class
-com\di\Assignment$AssignmentStatus.class
+com\di\GuiceModule.class
 com\di\Assignment.class
 com\di\Course.class
 com\di\OnlineCourse.class
+com\di\ConnectionProvider.class
 com\di\Student.class
+com\di\StudentDatabase.class
 com\di\Teacher.class
 com\di\User.class

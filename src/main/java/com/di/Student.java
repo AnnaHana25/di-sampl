@@ -1,52 +1,21 @@
 package com.di;
 
-import java.util.ArrayList;
-import java.util.List;
+public class Student {
 
-public class Student extends User {
-    private List<OnlineCourse> courses;
-    private List<Assignment> assignments;
+    private String name;
 
-    // Пустий конструктор
-    public Student() {
-        this.courses = new ArrayList<>();
-        this.assignments = new ArrayList<>();
+    // Конструктор для ініціалізації студента з ім'ям
+    public Student(String name) {
+        this.name = name;
     }
 
-    // Сеттер для ім'я
-    public void setName(String name) {
-        super.setName(name);
+    // Геттер для отримання імені студента
+    public String getName() {
+        return name;
     }
 
-    // Сеттер для email
-    public void setEmail(String email) {
-        super.setEmail(email);
-    }
-
-    // Сеттер для курсів
-    public void setCourses(List<OnlineCourse> courses) {
-        this.courses = courses;
-    }
-
-    public void setAssignments(List<Assignment> assignments) {
-        this.assignments = assignments;
-    }
-
-    // Логін
-    @Override
-    public void login() {
-        System.out.println("Student " + getName() + " logged in.");
-    }
-
-    // Запис на курс
-    public void enrollCourse(OnlineCourse course) {
-        courses.add(course);
-        course.enrollStudent(this);
-    }
-
-    // Подання завдання
-    public void submitAssignment(Assignment assignment) {
-        assignments.add(assignment);
-        assignment.submit(this);
+    // Метод для здачі завдання
+    public void submitAssignment(String assignment) {
+        System.out.println(name + " has submitted assignment: " + assignment);
     }
 }
